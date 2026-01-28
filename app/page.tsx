@@ -8,6 +8,7 @@ const page = () => {
       <p className='font-social uppercase'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quasi. Aliquam, quia.</p>
       <p className='font-helvic text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quasi. Aliquam, quia.</p>
       <Image src={'/logo.svg'} alt='img' height={140} width={140}/>
+      <div className='min-h-[200vh] bg-[skyblue]'></div>
     </div>
   );
 };

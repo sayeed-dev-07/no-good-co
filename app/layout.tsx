@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from 'next/font/local'
 import Navbar from "@/components/mainPageComponents/Navbar";
+import LenisProvider from "@/components/providers/lenis";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,15 +16,15 @@ const geistMono = Geist_Mono({
 });
 const futura = localFont({
   variable: "--font-futura",
-  src:'./fonts/Futura-Bold.woff2'
+  src: './fonts/Futura-Bold.woff2'
 });
 const social = localFont({
   variable: "--font-social",
-  src:'./fonts/ABCSocialMono-Regular.woff2'
+  src: './fonts/ABCSocialMono-Regular.woff2'
 });
 const helvic = localFont({
   variable: "--font-helvic",
-  src:'./fonts/HelveticaNowText-Regular.woff2'
+  src: './fonts/HelveticaNowText-Regular.woff2'
 });
 
 
@@ -42,8 +43,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${futura.variable} ${helvic.variable} ${geistMono.variable} ${social.variable} text-background antialiased bg-foreground`}
       >
-        <Navbar/>
-        {children}
+        <LenisProvider>
+          <Navbar />
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );
