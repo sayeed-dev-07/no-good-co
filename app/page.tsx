@@ -1,16 +1,20 @@
+
+import TextAnimation from '@/components/normalComponents/textAnimation';
 import Image from 'next/image';
 import React from 'react';
 
-const page = () => {
+
+const Page = () => {
+
+
+
   return (
-    <div className='min-h-screen overflow-hidden py-[5%] text-3xl w-full bg-foreground text-background flex flex-col items-center justify-between'>
-      <p className='font-futura uppercase text-[317px] font-medium'>Lorem ipsum dolor sit <br /> quasi. Aliquam, quia.</p>
-      <p className='font-social uppercase'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quasi. Aliquam, quia.</p>
-      <p className='font-helvic text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quasi. Aliquam, quia.</p>
-      <Image src={'/logo.svg'} alt='img' height={140} width={140}/>
-      <div className='min-h-[200vh] bg-[skyblue]'></div>
+    <div  className='bg-foreground px-4 px-1 pt-[25vh] text-background min-h-[200vh] w-full'>
+      
+        <TextAnimation text='change the course.' style='text-[calc((100vw-48px)*0.1620)] leading-[0.96em] sm:leading-[0.9em] uppercase font-medium font-futura tracking-[-0.06em]' />
+      
     </div>
   );
 };
 
-export default page;
+export default Page;

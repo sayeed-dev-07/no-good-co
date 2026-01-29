@@ -2,14 +2,13 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useRef, useState } from 'react';
 import HamburgerMenu from '../normalComponents/Hamburger';
 import NavItems from '../normalComponents/NavItems';
-import { useLenis } from 'lenis/react'; // Ensure this is imported
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const Navbar = () => {
     const imgRef = useRef(null);
@@ -17,35 +16,16 @@ const Navbar = () => {
     const containerRef = useRef(null);
     const [openMenu, setOpenMenu] = useState(false);
 
-    // 1. Grab the lenis instance
-    const lenis = useLenis();
-
-    // 2. Control the scroll engine based on menu state
-    useEffect(() => {
-        if (!lenis) return;
-
-        if (openMenu) {
-            // Stop Lenis virtual scroll
-            lenis.stop();
-            // Stop native browser scroll and prevent "jump"
-            document.documentElement.style.overflow = "hidden";
-            document.body.style.overflow = "hidden";
-        } else {
-            // Restart Lenis
-            lenis.start();
-            // Restore native scroll
-            document.documentElement.style.overflow = "";
-            document.body.style.overflow = "";
-        }
-
-        return () => {
-            lenis?.start();
-            document.documentElement.style.overflow = "";
-            document.body.style.overflow = "";
-        };
-    }, [openMenu, lenis]);
 
     useGSAP(() => {
+
+        // stopping the scrollbar when menu is open
+
+        const smoother = ScrollSmoother.get()
+        if (smoother) {
+            smoother.paused(openMenu);
+        }
+
         // Your existing ScrollTrigger logic
         gsap.set(imgRef.current, { y: 50, autoAlpha: 0, display: 'none' });
         gsap.set(textRef.current, { y: 0, autoAlpha: 1 });
@@ -53,7 +33,7 @@ const Navbar = () => {
         const topTl = gsap.timeline({
             scrollTrigger: {
                 trigger: document.body,
-                start: "200px top",
+                start: "350px top",
                 toggleActions: "play reverse play reverse",
             }
         });
@@ -63,7 +43,7 @@ const Navbar = () => {
 
         ScrollTrigger.create({
             trigger: document.body,
-            start: "bottom 110%",
+            start: "bottom 130%",
             onEnter: () => {
                 gsap.to(imgRef.current, { y: 50, autoAlpha: 0, duration: 0.4 });
                 gsap.to(textRef.current, { y: 0, autoAlpha: 1, duration: 0.2 });
@@ -74,18 +54,18 @@ const Navbar = () => {
             }
         });
 
-    }, { scope: containerRef });
+    }, { scope: containerRef, dependencies:[openMenu] });
 
     return (
-        <div ref={containerRef} className={`${openMenu ? 'text-foreground' : 'text-background'} font-social px-1 sm:px-4 md:px-8 lg:px-12 py-2.5 sm:py-5 fixed top-0 left-0 w-full flex items-center justify-between z-50 h-fit`}>
+        <div ref={containerRef} className={`${openMenu ? 'text-foreground' : 'text-background'} font-social px-1 sm:px-4  py-2.5 sm:py-5 fixed top-0 left-0 w-full flex items-center justify-between z-50 h-fit`}>
 
             {/* nav items overlay */}
-            <NavItems openMenu={openMenu}/>
+            <NavItems openMenu={openMenu} setOpenMenu={setOpenMenu} />
 
             <div className="relative h-20 w-full flex">
-                <div ref={imgRef} className="absolute opacity-0 cursor-pointer">
+                <div onClick={()=>setOpenMenu(false)} ref={imgRef} className="absolute opacity-0 cursor-pointer">
                     <Link className='' href={'/'}>
-                        <svg className={`w-[15vw] sm:w-[10vw] md:w-[9vw] lg:w-[5vw] ${openMenu ? 'fill-white': 'fill-black'}`} width="106" height="97" viewBox="37 40 106 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg className={`w-[15vw] sm:w-[10vw] md:w-[9vw] lg:w-[5vw] ${openMenu ? 'fill-white' : 'fill-black'}`} width="106" height="97" viewBox="37 40 106 97" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="60.5" cy="113.5" r="23.5" fill="cureentColor" />
                             <circle cx="119.5" cy="113.5" r="23.5" fill="cureentColor" />
                             <path d="M116.191 61.0668L101.467 45.5393L106.594 40.6778L121.318 56.2053L136.698 41.6208L141.606 46.7966L126.226 61.3811L140.95 76.9086L135.824 81.7701L121.099 66.2426L105.719 80.8271L100.811 75.6513L116.191 61.0668Z" fill="cureentColor" />
@@ -94,7 +74,7 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                <div ref={textRef} className="absolute inset-0 w-fit cursor-pointer">
+                <div onClick={()=>setOpenMenu(false)} ref={textRef} className="absolute inset-0 w-fit cursor-pointer">
                     <Link className='uppercase text-2xl sm:text-4xl sm:font-semibold flex flex-col sm:leading-8 leading-6 font-bold font-futura' href={'/'}>
                         <span>no</span>
                         <span>good</span>

@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
+
 export default function HamburgerMenu({state}:{state: boolean}) {
-  const [isOpen, setIsOpen] = useState(false);
   const container = useRef(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
 
@@ -18,19 +18,17 @@ export default function HamburgerMenu({state}:{state: boolean}) {
   }, { scope: container });
 
   // Toggle the animation based on state
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-    if (!isOpen) {
+  useGSAP(() => {
+    if (state) {
       tl.current?.play();
     } else {
       tl.current?.reverse();
     }
-  };
+  }, [state]);
 
   return (
     <button 
       ref={container}
-      onClick={toggleMenu}
       className={`flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none cursor-pointer z-50  group `}
       aria-label="Toggle Menu"
     >

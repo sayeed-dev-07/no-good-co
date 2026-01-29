@@ -4,10 +4,11 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import Link from 'next/link';
 import React, { useRef } from 'react';
+import NavLink from './NavLink';
 
 gsap.registerPlugin(SplitText)
 
-const NavItems = ({openMenu}:{openMenu: boolean}) => {
+const NavItems = ({openMenu, setOpenMenu}:{openMenu: boolean, setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const containerRef = useRef<HTMLDivElement | null>(null)
     useGSAP(() => {
         if (!containerRef.current) {
@@ -63,34 +64,34 @@ const NavItems = ({openMenu}:{openMenu: boolean}) => {
                         <div className='flex items-start justify-between w-full flex-wrap gap-x-3.5 gap-y-4 '>
                             <div className='flex flex-col capitalize contact'>
                                 <p className='pb-3 uppercase text-xs text-[#d5d2d2b4]'>connent with us</p>
-                                <a href="">facebook</a>
-                                <a href="">instagram</a>
-                                <a href="">twitter</a>
-                                <a href="">linkedIn</a>
-                                <a href="">youTube</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">facebook</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">instagram</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">twitter</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">linkedIn</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">youTube</a>
                             </div>
                             <div className='flex flex-col  capitalize contact'>
                                 <p className='pb-3 uppercase text-xs text-[#d5d2d2b4]'>nitty gritties</p>
-                                <a href="">good things faqs</a>
-                                <a href="">good food faqs</a>
-                                <a href="">good places</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">good things faqs</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">good food faqs</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">good places</a>
                             </div>
                             <div className='flex flex-col capitalize contact'>
                                 <p className='pb-3 uppercase text-xs text-[#d5d2d2b4]'>get started</p>
-                                <a href="">pathways</a>
-                                <a href="">careers</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">pathways</a>
+                                <a onClick={()=>setOpenMenu(prev => !prev)} href="">careers</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='sm:flex-2 w-full items-end font-futura flex font-bold  sm:text-6xl text-4xl lg:text-7xl uppercase flex-col  mt-[25%] sm:mt-[5%]'>
-                    <Link className='link' href={'/'}>shop</Link>
-                    <Link className='link' href={'/'}>catering</Link>
-                    <Link className='link' href={'/'}>impact</Link>
-                    <Link className='link' href={'/'}>stories</Link>
-                    <Link className='link' href={'/'}>about</Link>
-                    <Link className='link' href={'/'}>contact</Link>
-                    <Link className='link' href={'/'}>donate</Link>
+                <div className='sm:flex-2 w-full items-end font-futura flex font-bold  sm:text-6xl text-4xl lg:text-7xl uppercase flex-col -gap-y-2 mt-[30%] sm:mt-[5%]'>
+                    <NavLink setOpenMenu={setOpenMenu} path='/shop' text='shop'/>
+                    <NavLink setOpenMenu={setOpenMenu} path='/catering' text='catering'/>
+                    <NavLink setOpenMenu={setOpenMenu} path='/impact' text='impact'/>
+                    <NavLink setOpenMenu={setOpenMenu} path='/stories' text='stories'/>
+                    <NavLink setOpenMenu={setOpenMenu} path='/about' text='about'/>
+                    <NavLink setOpenMenu={setOpenMenu} path='/contact' text='contact'/>
+                    <NavLink setOpenMenu={setOpenMenu} path='/donate' text='donate'/>
                 </div>
             </div>
         </div>

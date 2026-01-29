@@ -4,6 +4,7 @@ import "./globals.css";
 import localFont from 'next/font/local'
 import Navbar from "@/components/mainPageComponents/Navbar";
 import LenisProvider from "@/components/providers/lenis";
+import ScrollSmootherWrapper from "@/components/providers/lenis";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,10 +44,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${futura.variable} ${helvic.variable} ${geistMono.variable} ${social.variable} text-background antialiased bg-foreground`}
       >
-        <LenisProvider>
-          <Navbar />
+        <Navbar/>
+        <ScrollSmootherWrapper>
           {children}
-        </LenisProvider>
+        </ScrollSmootherWrapper>
       </body>
     </html>
   );
