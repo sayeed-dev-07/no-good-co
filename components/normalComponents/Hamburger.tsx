@@ -31,15 +31,15 @@ export default function HamburgerMenu({state}:{state: boolean}) {
     <button 
       ref={container}
       onClick={toggleMenu}
-      className="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none z-50 cursor-pointer group"
+      className={`flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none cursor-pointer z-50  group `}
       aria-label="Toggle Menu"
     >
       {/* Line 1 */}
-      <span className={`line-top block w-8 h-0.5 ${state ? 'bg-foreground' : 'bg-background'}`}></span>
+      <span className={`line-top ${state ? 'bg-white' : 'bg-black'} block w-8 h-0.5 `}></span>
       {/* Line 2 */}
-      <span className={`line-mid block w-8 h-0.5  ${state ? 'bg-foreground' : 'bg-background'}`}></span>
+      <span className={`line-mid ${state ? 'bg-white' : 'bg-black'} block w-8 h-0.5  `}></span>
       {/* Line 3 */}
-      <span className={`line-bot ${state ? 'bg-foreground' : 'bg-background'} block w-8 h-0.5`}></span>
+      <span className={`line-bot ${state ? 'bg-white' : 'bg-black'}  block w-8 h-0.5`}></span>
     </button>
   );
 }

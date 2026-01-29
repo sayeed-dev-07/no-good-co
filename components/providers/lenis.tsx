@@ -4,6 +4,7 @@ import { ReactNode, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import ReactLenis from 'lenis/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,9 +48,9 @@ const LenisProvider = ({ children }: Props) => {
   return (
     // Lenis doesn't require specific wrappers, 
     // so we can just return a fragment or a simple div.
-    <>
+    <ReactLenis root>
       {children}
-    </>
+    </ReactLenis>
   );
 };
 
