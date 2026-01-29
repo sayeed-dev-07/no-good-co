@@ -80,12 +80,7 @@ const Navbar = () => {
         <div ref={containerRef} className={`${openMenu ? 'text-foreground' : 'text-background'} font-social px-1 sm:px-4 md:px-8 lg:px-12 py-2.5 sm:py-5 fixed top-0 left-0 w-full flex items-center justify-between z-50 h-fit`}>
 
             {/* nav items overlay */}
-            <div
-                data-lenis-prevent /* This allows scrolling links INSIDE the menu if they overflow */
-                className={`fixed inset-0 bg-background transition-transform duration-500 ${openMenu ? 'translate-y-0 pointer-events-auto' : '-translate-y-full pointer-events-none'}`}
-            >
-                <NavItems />
-            </div>
+            <NavItems openMenu={openMenu}/>
 
             <div className="relative h-20 w-full flex">
                 <div ref={imgRef} className="absolute opacity-0 cursor-pointer">
