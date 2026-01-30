@@ -7,44 +7,51 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-const LineAnim = ({ text, style }: { text: string, style?: string }) => {
+const LineAnim = ({ text, style, delay=0 }: { text: string, style?: string, delay?: number }) => {
     const textRef = useRef<HTMLDivElement | null>(null)
 
     useGSAP(() => {
         if (!textRef.current) return
-        // const mm = gsap.matchMedia()
-        // mm.add("(min-width: 769px)", () => {
-        const split = SplitText.create(textRef.current, {
+        
+        document.fonts.ready.then(()=>{
+            const split = SplitText.create(textRef.current, {
             type: 'lines',
-            mask: 'lines'
+            mask: 'lines',
         })
-        gsap.set(split.chars, {
+        gsap.set(split.lines, {
             force3D: true,
-            willChange: 'transform, opacity'
+            willChange: 'transform, opacity',
+            autoAlpha:0,
+            y:60,
+            
         });
-        gsap.from(split.lines, {
+        gsap.set(textRef.current, { visibility: "visible" });
+        gsap.to(split.lines,
+        {
             scrollTrigger: {
                 trigger: textRef.current,
-                start: '',
-                once: true
+                start: 'clamp(top 90%)',
             },
             ease: 'power4.out',
-            y: 100,
-            autoAlpha: 0,
+            y: 0,
+            autoAlpha: 1,
             duration: 1,
             stagger: 0.1,
-        })
+            delay: delay
+        }
+         )
 
         return () => {
             split.revert();
         };
-        // });
-    }, { scope: textRef })
+        })
+        
+    })
 
 
 
     return (
-        <div ref={textRef} className={`${style} will-change-auto`}>
+        <div style={{visibility: 'hidden'}} ref={textRef} className={`${style}  will-change-transform `}>
             {text}
         </div>
     );

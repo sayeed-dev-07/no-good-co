@@ -15,7 +15,7 @@ const Page = () => {
       
         <TextAnimation text='change the course.' style='text-[calc((100vw-48px)*0.1620)] leading-[0.96em] sm:leading-[0.9em] uppercase font-medium font-futura tracking-[-0.06em]' />
         <HeroImg/>
-        <div className='mt-6 sm:mt-12'>
+        <div className='mt-6 sm:mt-[5%]'>
           <GiftSection/>
         </div>
         
