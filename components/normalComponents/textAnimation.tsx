@@ -13,42 +13,46 @@ type prop = {
 gsap.registerPlugin(SplitText);
 
 
-const TextAnimation = ({style, text}:prop) => {
+const TextAnimation = ({ style, text }: prop) => {
     const textRef = useRef<HTMLParagraphElement | null>(null);
 
     useGSAP(() => {
         if (!textRef.current) return;
 
         // 1. Split the text
-        const split = new SplitText(textRef.current, {
-            type: 'lines, words',
-            mask:'lines'
-        });
+        document.fonts.ready.then(() => {
+            
+            const split = new SplitText(textRef.current, {
+                type: 'lines, words',
+                mask: 'lines'
+            });
+            gsap.set(textRef.current, { visibility: 'visible' });
 
-        
-        gsap.set(textRef.current, { visibility: 'visible' });
+            // 3. The Animation
+            gsap.from(split.words, {
+                y: '110%',
+                duration: 1.2,
+                stagger: 0.2,             // Faster stagger usually feels more "premium"
+                ease: 'expo.out',          // Expo is the king of smooth transitions
+                delay: 0.2,
+            });
 
-        // 3. The Animation
-        gsap.from(split.words, {
-            y: '110%',             
-            duration: 1.2,
-            stagger: 0.2,             // Faster stagger usually feels more "premium"
-            ease: 'expo.out',          // Expo is the king of smooth transitions
-            delay: 0.2,
-        });
+            return () => {
+                split.revert()
+            }
+        })
 
-        return ()=>{
-            split.revert()
-        }
 
-    }, { scope: textRef }); 
+
+
+    }, { scope: textRef });
 
     return (
         /* Add "invisible" class or inline style to hide it initially */
-        <p 
-            ref={textRef} 
+        <p
+            ref={textRef}
             className={`${style} will-change-transform`}
-            style={{ visibility: 'hidden' }} 
+            style={{ visibility: 'hidden' }}
         >
             {text}
         </p>

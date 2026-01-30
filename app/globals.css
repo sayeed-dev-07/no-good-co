@@ -31,3 +31,13 @@ html {
   /* This keeps the scrollbar "track" visible so the page doesn't shift */
   scrollbar-gutter: stable;
 }
+::selection {
+  background-color: #000; /* The dark gray from your image */
+  color: #fff;            /* Your 'milk' color (adjust hex if needed) */
+}
+
+/* Firefox specific */
+::-moz-selection {
+  background-color: #000;
+  color: #fff;
+}

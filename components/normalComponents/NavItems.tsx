@@ -10,6 +10,7 @@ gsap.registerPlugin(SplitText)
 
 const NavItems = ({openMenu, setOpenMenu}:{openMenu: boolean, setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const containerRef = useRef<HTMLDivElement | null>(null)
+    const scrollRef = useRef<HTMLDivElement | null>(null)
     useGSAP(() => {
         if (!containerRef.current) {
             return
@@ -22,6 +23,9 @@ const NavItems = ({openMenu, setOpenMenu}:{openMenu: boolean, setOpenMenu: React
         const tl = gsap.timeline()
          gsap.set(containerRef.current, { force3D: true })
         if (openMenu) {
+            if (scrollRef.current) {
+                scrollRef.current.scrollTop = 0;
+            }
             tl.to(containerRef.current, {
                 y:0,
                 duration:0.5,
@@ -55,10 +59,10 @@ const NavItems = ({openMenu, setOpenMenu}:{openMenu: boolean, setOpenMenu: React
     return (
 
         <div ref={containerRef}
-            data-lenis-prevent /* This allows scrolling links INSIDE the menu if they overflow */
+            
             className={`fixed inset-0 bg-background -translate-y-full will-change-transform`}
         >
-            <div className='w-full h-full flex items-center flex-col-reverse sm:flex-row justify-between px-3 font-helvic overflow-auto gap-y-3'>
+            <div ref={scrollRef} className='w-full h-full flex items-center flex-col-reverse sm:flex-row justify-between px-3 font-helvic overflow-auto gap-y-3'>
                 <div className='flex-3  flex  justify-between h-fit w-full sm:h-full'>
                     <div className='flex items-end  w-full h-full py-[5%]'>
                         <div className='flex items-start justify-between w-full flex-wrap gap-x-3.5 gap-y-4 '>

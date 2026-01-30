@@ -18,7 +18,7 @@ export default function ScrollSmootherWrapper({ children }:{children : React.Rea
     ScrollSmoother.create({
       wrapper: '#smooth-wrapper',
       content: '#smooth-content',
-      smooth: 1.2,
+      smooth: 1.15,
       effects: true,
     });
   }, { dependencies: [pathname], revertOnUpdate: true }); 
