@@ -4,7 +4,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import React, { useRef } from 'react';
 
-const LineButton = ({ children }: { children: React.ReactNode }) => {
+const LineButton = ({ children, auto=true }: { children: React.ReactNode, auto?: boolean }) => {
     const lineRef = useRef<HTMLDivElement | null>(null);
 
     const { contextSafe } = useGSAP();
@@ -31,7 +31,7 @@ const LineButton = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <div 
-            className='cursor-pointer w-fit mx-auto' 
+            className={`cursor-pointer w-fit ${auto ? 'mx-auto' : ''}`} 
             onMouseEnter={handleMouseEnter}
         >
             <div className='overflow-hidden w-fit '>

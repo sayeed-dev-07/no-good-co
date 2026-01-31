@@ -4,12 +4,13 @@ import { giftData } from '@/public/data/giftData';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Image from 'next/image';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 
 
 const GiftImage = ({ index }: { index: number }) => {
     const data = giftData[index]
+    const openRef = useRef(false)
     const animCardRef = useRef<HTMLDivElement | null>(null);
     const {contextSafe} = useGSAP()
     const handleHover = contextSafe(()=>{
@@ -30,11 +31,32 @@ const GiftImage = ({ index }: { index: number }) => {
             overwrite:'auto'
         })
     })
+    const handleClick = contextSafe(()=>{
+        if (openRef.current) {
+            gsap.to(animCardRef.current, {
+            y:'-105%',
+            ease: 'power2.in',
+            duration: 0.3,
+            force3D: true,
+            overwrite:'auto',
+            onComplete: ()=>{openRef.current = false}
+        })
+        }else{
+            gsap.to(animCardRef.current, {
+            y:0,
+            ease: 'power2.out',
+            duration: 0.3,
+            force3D: true,
+            overwrite:'auto',
+            onComplete: ()=>{openRef.current = true}
+        })
+        }
+    })
     return (
         <div className='h-[75vh] sm:h-[90vh] overflow-hidden w-full relative'>
             <Image loading='lazy' data-speed="auto" fill src={data.imgSrc} className='gift-card-img object-cover min-h-[120%] scale-105 opacity-0 top-[-10%]' alt={`${data.shopName}-bgImg`} />
             <div className='w-full h-full absolute flex items-center justify-center z-10 inset-0'>
-                <div onMouseEnter={handleHover} onMouseLeave={handleHoverOut} className='w-full max-w-80.5  relative'>
+                <div onClick={handleClick} onMouseEnter={handleHover} onMouseLeave={handleHoverOut} className='w-full max-w-80.5 cursor-pointer relative'>
                     <div className='absolute z-20 inset-0 py-[8%] bg-[#dcc0b4] w-full rounded-4xl uppercase text-[13px] flex items-center justify-between px-[10%]'>
                         <div className="dot h-2 w-2 bg-black rounded-full"></div>
                         <p>shop</p>

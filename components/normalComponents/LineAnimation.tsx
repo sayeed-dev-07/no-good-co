@@ -51,7 +51,7 @@ const LineAnim = ({ text, style, delay=0 }: { text: string, style?: string, dela
 
 
     return (
-        <div style={{visibility: 'hidden'}} ref={textRef} className={`${style}  will-change-transform `}>
+        <div style={{visibility: 'hidden'}} ref={textRef} className={`${style}  will-change-transform w-full`}>
             {text}
         </div>
     );
