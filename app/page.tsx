@@ -11,7 +11,7 @@ const Page = () => {
 
 
   return (
-    <div  className='bg-foreground sm:px-4 px-1 pt-[25vh] text-background min-h-[200vh] w-full flex flex-col gap-y-5'>
+    <div  className='bg-foreground sm:px-4 px-1 pt-[25vh] text-background  w-full flex flex-col gap-y-5'>
       
         <TextAnimation text='change the course.' style='text-[calc((100vw-48px)*0.1620)] leading-[0.96em] sm:leading-[0.9em] uppercase font-medium font-futura tracking-[-0.06em]' />
         <HeroImg/>

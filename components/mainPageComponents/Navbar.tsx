@@ -22,6 +22,11 @@ const Navbar = () => {
         if (smoother) {
             smoother.paused(openMenu);
         }
+        if (openMenu) {
+            document.body.classList.add('menu-open');
+        } else {
+            document.body.classList.remove('menu-open');
+        }
     }, [openMenu]);
 
     useGSAP(() => {
@@ -65,12 +70,12 @@ const Navbar = () => {
 
     return (
         <div ref={containerRef} className={`${openMenu ? 'text-foreground' : 'text-background'} font-social px-1 sm:px-4 py-2.5 sm:py-5 fixed top-0 left-0 w-full flex items-center justify-between z-50 h-fit`}>
-            
+
             <NavItems openMenu={openMenu} setOpenMenu={setOpenMenu} />
 
             <div className="relative h-20 w-full flex items-center">
                 {/* Logo Wrapper */}
-                <div style={{display:'none'}} onClick={() => setOpenMenu(false)} ref={imgRef} className="absolute cursor-pointer opacity-0">
+                <div style={{ display: 'none' }} onClick={() => setOpenMenu(false)} ref={imgRef} className="absolute cursor-pointer opacity-0">
                     <Link href={'/'}>
                         <svg className={`w-[15vw] sm:w-[10vw] md:w-[9vw] lg:w-[5vw] ${openMenu ? 'fill-white' : 'fill-black'}`} width="106" height="97" viewBox="37 40 106 97" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="60.5" cy="113.5" r="23.5" fill="currentColor" />

@@ -41,3 +41,7 @@ html {
   background-color: #000;
   color: #fff;
 }
+body.menu-open {
+  overflow: hidden !important;
+  height: 100vh;
+}
