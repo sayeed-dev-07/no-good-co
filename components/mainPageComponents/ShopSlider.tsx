@@ -45,9 +45,9 @@ const ShopSlider = () => {
                 <GiftImage index={1} />
                 <GiftImage index={2} />
             </div>
-            <div className='flex items-center justify-between md:flex-row flex-col md:mt-6 mt-[5%] gap-x-12 gap-y-12 '>
+            <div className='flex items-start justify-between md:flex-row flex-col md:mt-6 mt-[5%] gap-x-12 gap-y-12 '>
                 <div className='xl:flex-2 flex-1'>
-                    <LineAnim style='text-4xl sm:text-5xl md:text-6xl font-futura w-full uppercase   xl:max-w-[60%] max-w-full' text='We believe in people, until they believe in themselves again.'/>
+                    <LineAnim style='text-4xl sm:text-5xl md:text-6xl font-futura text-start w-full uppercase   xl:max-w-[60%]' text='We believe in people, until they believe in themselves again.'/>
                 </div>
                 <div className='flex-1 flex flex-col items-center gap-y-4 justify-start  md:gap-y-12'>
                     <LineAnim text='Everything we do is designed to rebuild self worth and independence, in order to break free from the cycle of disadvantage.'/>
