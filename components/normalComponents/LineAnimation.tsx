@@ -22,8 +22,7 @@ const LineAnim = ({ text, style, delay=0 }: { text: string, style?: string, dela
             force3D: true,
             willChange: 'transform, opacity',
             autoAlpha:0,
-            y:60,
-            
+            yPercent:100,
         });
         gsap.set(textRef.current, { visibility: "visible" });
         gsap.to(split.lines,
@@ -33,7 +32,7 @@ const LineAnim = ({ text, style, delay=0 }: { text: string, style?: string, dela
                 start: 'clamp(top 90%)',
             },
             ease: 'power4.out',
-            y: 0,
+            yPercent: 0,
             autoAlpha: 1,
             duration: 1,
             stagger: 0.1,

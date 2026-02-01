@@ -4,7 +4,7 @@ import { giftData } from '@/public/data/giftData';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 
 
@@ -56,8 +56,8 @@ const GiftImage = ({ index }: { index: number }) => {
         <div className='h-[75vh] sm:h-[90vh] overflow-hidden w-full relative'>
             <Image loading='lazy' data-speed="auto" fill src={data.imgSrc} className='gift-card-img object-cover min-h-[120%] scale-105 opacity-0 top-[-10%]' alt={`${data.shopName}-bgImg`} />
             <div className='w-full h-full absolute flex items-center justify-center z-10 inset-0'>
-                <div onClick={handleClick} onMouseEnter={handleHover} onMouseLeave={handleHoverOut} className='w-full max-w-80.5  relative'>
-                    <div  className='absolute cursor-pointer z-20 inset-0 py-[8%] bg-[#dcc0b4] w-full rounded-4xl uppercase text-[13px] flex items-center justify-between px-[10%]'>
+                <div onClick={handleClick}  onMouseLeave={handleHoverOut} className='w-full max-w-80.5 relative'>
+                    <div onMouseEnter={handleHover} className='absolute cursor-pointer z-20 inset-0 py-[8%] bg-[#dcc0b4] w-full rounded-4xl uppercase text-[13px] flex items-center justify-between px-[10%]'>
                         <div className="dot h-2 w-2 bg-black rounded-full"></div>
                         <p>shop</p>
                         <p className='font-semibold'>{data.shopName}</p>

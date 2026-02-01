@@ -15,7 +15,15 @@ const ShopSlider = () => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useGSAP(() => {
-
+        gsap.to('.line',{
+            x:0,
+            duration:0.5,
+            ease:'power1.out',
+            scrollTrigger:{
+                trigger:'.line',
+                start: 'top 80%'
+            }
+        })
 
         gsap.to('.gift-card-img', {
             scale: 1,
@@ -32,13 +40,13 @@ const ShopSlider = () => {
     }, { scope: containerRef })
 
     return (
-        <div ref={containerRef} className='font-helvic w-full'>
+        <div ref={containerRef} className='font-helvic w-full overflow-hidden'>
             <div>
                 <div className='uppercase text-xs flex items-center justify-between'>
                     <p>buy good</p>
                     <p>do good</p>
                 </div>
-                <div className='w-full h-px bg-background'></div>
+                <div  className='w-full line -translate-x-full h-px bg-background'></div>
             </div>
             <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-y-4 gap-x-4 py-[2%]'>
                 <GiftImage index={0} />
