@@ -1,6 +1,7 @@
 
 import GiftSection from '@/components/mainPageComponents/GiftSection';
 import HeroImg from '@/components/mainPageComponents/HeroImg';
+import ProductSection from '@/components/mainPageComponents/ProductSection';
 import TextAnimation from '@/components/normalComponents/textAnimation';
 import Image from 'next/image';
 import React from 'react';
@@ -17,6 +18,9 @@ const Page = () => {
         <HeroImg/>
         <div className='mt-6 sm:mt-[5%]'>
           <GiftSection/>
+        </div>
+        <div>
+          <ProductSection/>
         </div>
         
     </div>

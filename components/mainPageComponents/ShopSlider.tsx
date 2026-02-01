@@ -57,7 +57,7 @@ const ShopSlider = () => {
                 <div className='xl:flex-2 flex-1'>
                     <LineAnim style='text-4xl sm:text-5xl md:text-6xl font-futura text-start w-full uppercase   xl:max-w-[60%]' text='We believe in people, until they believe in themselves again.'/>
                 </div>
-                <div className='flex-1 flex flex-col items-center gap-y-4 justify-start  md:gap-y-12'>
+                <div className='flex-1 flex flex-col items-center gap-y-3 justify-start  md:gap-y-12'>
                     <LineAnim text='Everything we do is designed to rebuild self worth and independence, in order to break free from the cycle of disadvantage.'/>
                     <LineAnim text='With every purchase you make with us, you&apos;re helping to change the course of someone&apos;s life; you&apos;re walking alongside vulnerable women as they find their way home again.'/>
                         <div className='w-full '>
