@@ -1,6 +1,7 @@
 
 import GiftSection from '@/components/mainPageComponents/GiftSection';
 import HeroImg from '@/components/mainPageComponents/HeroImg';
+import MessageSection from '@/components/mainPageComponents/MessageSection';
 import ProductSection from '@/components/mainPageComponents/ProductSection';
 import TextAnimation from '@/components/normalComponents/textAnimation';
 import Image from 'next/image';
@@ -21,6 +22,9 @@ const Page = () => {
         </div>
         <div>
           <ProductSection/>
+        </div>
+        <div>
+          <MessageSection/>
         </div>
         
     </div>
