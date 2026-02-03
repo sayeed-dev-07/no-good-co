@@ -55,7 +55,7 @@ const QuotesSlider = () => {
 
     // EXIT OLD
     tl.to(oldSplit.lines, {
-      yPercent: 100,
+      yPercent: -100,
       autoAlpha: 0,
       duration: 0.45,
       stagger: 0.05,
@@ -177,13 +177,13 @@ const QuotesSlider = () => {
   return (
     <div
       ref={containerRef}
-      className="w-full overflow-hidden py-24 relative "
+      className="w-full flex flex-col sm:gap-y-12 gap-y-4 overflow-hidden  relative py-6"
     >
 
       {/* SLIDER */}
       <div
         ref={trackRef}
-        className="flex w-max flex-nowrap  sm:gap-x-16 gap-x-8 items-center"
+        className="flex w-max flex-nowrap  sm:gap-x-16 gap-x-8  items-center"
         style={{ willChange: "transform" }}
       >
         {items.map((quote, i) => (
@@ -203,7 +203,7 @@ const QuotesSlider = () => {
       {/* QUOTE SECTION */}
       <div
         ref={sectionRef}
-        className="quotesSection mt-20 px-6 flex flex-col items-center justify-center text-center overflow-hidden"
+        className="quotesSection mt-12 md:mt-32 px-6 flex flex-col items-center justify-center text-center overflow-hidden"
       >
         <div className="max-w-7xl mx-auto">
           <div
