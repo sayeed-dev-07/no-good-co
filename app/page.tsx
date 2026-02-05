@@ -1,10 +1,10 @@
 
 import GiftSection from '@/components/mainPageComponents/GiftSection';
 import HeroImg from '@/components/mainPageComponents/HeroImg';
+import ImpactSection from '@/components/mainPageComponents/ImpactSection';
 import MessageSection from '@/components/mainPageComponents/MessageSection';
 import ProductSection from '@/components/mainPageComponents/ProductSection';
 import TextAnimation from '@/components/normalComponents/textAnimation';
-import Image from 'next/image';
 import React from 'react';
 
 
@@ -26,7 +26,9 @@ const Page = () => {
         <div>
           <MessageSection/>
         </div>
-        
+        <div>
+          <ImpactSection/>
+        </div>
     </div>
   );
 };

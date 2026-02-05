@@ -8,6 +8,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { SplitText } from 'gsap/SplitText'
 import { Flip } from 'gsap/all'
+import LineAnim from '../normalComponents/LineAnimation'
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(SplitText, Flip)
@@ -220,10 +221,10 @@ const QuotesSlider = () => {
       </div>
 
       {/* BUTTON */}
-      <div className="btn-send sm:px-12 sm:py-5 py-3.5 px-6 rounded-4xl text-sm font-semibold font-helvic uppercase text-foreground bg-background border w-fit m-auto mt-10 cursor-pointer hover:bg-gray-800 transition-colors">
+      <div className="btn-send sm:px-12 sm:py-5 py-3.5 px-6 rounded-4xl text-sm font-semibold font-helvic uppercase text-foreground bg-background border w-fit m-auto mt-10 cursor-pointer hover:bg-gray-800  transition-colors">
         Send your own quotes
       </div>
-
+        <LineAnim style='font-helvic text-center max-w-[320px] text-[16px] mx-auto w-full' text='Sometimes it’s the smallest actions that can make the biggest impact.'/>
     </div>
   )
 }

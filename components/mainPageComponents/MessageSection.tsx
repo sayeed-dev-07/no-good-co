@@ -31,7 +31,7 @@ const MessageSection = () => {
             </div>
             <div className='w-full line2 -translate-x-full h-px bg-background'></div>
 
-            <div className='my-6'>
+            <div className='my-6 min-h-screen'>
                 <QuotesSlider/>
             </div>
         </div>

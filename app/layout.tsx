@@ -5,6 +5,7 @@ import localFont from 'next/font/local'
 import Navbar from "@/components/mainPageComponents/Navbar";
 import LenisProvider from "@/components/providers/lenis";
 import ScrollSmootherWrapper from "@/components/providers/lenis";
+import FooterSection from "@/components/mainPageComponents/FooterSection";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({
         <Navbar/>
         <ScrollSmootherWrapper>
           {children}
+          <FooterSection/>
         </ScrollSmootherWrapper>
       </body>
     </html>
