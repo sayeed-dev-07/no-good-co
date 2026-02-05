@@ -60,7 +60,7 @@ const NavItems = ({openMenu, setOpenMenu}:{openMenu: boolean, setOpenMenu: React
 
         <div ref={containerRef}
             
-            className={`fixed inset-0 bg-background -translate-y-full will-change-transform h-dvh`}
+            className={`fixed inset-0 bg-background -translate-y-full will-change-transform h-screen`}
         >
             <div ref={scrollRef} className='w-full h-full flex items-center flex-col-reverse sm:flex-row justify-between px-3 font-helvic overflow-auto gap-y-3'>
                 <div className='flex-3  flex  justify-between h-fit w-full sm:h-full'>

@@ -17,7 +17,6 @@ const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
 
     useGSAP(() => {
-        // 1. Handle Smoother Pause separately to avoid re-triggering animations
         const smoother = ScrollSmoother.get();
         if (smoother) {
             smoother.paused(openMenu);
@@ -30,14 +29,11 @@ const Navbar = () => {
     }, [openMenu]);
 
     useGSAP(() => {
-        // Initial States
         gsap.set(imgRef.current, { y: 30, autoAlpha: 0, display: 'none' });
         gsap.set(textRef.current, { y: 0, autoAlpha: 1, display: 'block' });
 
-        // MASTER RULE: Use overwrite: 'auto' to prevent animation stacking glitches
         const transitionSettings = { duration: 0.3, ease: "power2.inOut", overwrite: true };
 
-        // TRIGGER 1: Initial scroll down (Swap Text for Logo)
         ScrollTrigger.create({
             trigger: document.body,
             start: "350px top",
@@ -51,31 +47,42 @@ const Navbar = () => {
             },
         });
 
-        // TRIGGER 2: Bottom of page (Swap Logo back to Text)
         ScrollTrigger.create({
             trigger: document.body,
-            start: "bottom 110%", // Adjust this slightly to ensure it doesn't overlap weirdly
+            start: "bottom 110%",
             onEnter: () => {
                 gsap.to(imgRef.current, { ...transitionSettings, y: 30, autoAlpha: 0, display: 'none' });
                 gsap.to(textRef.current, { ...transitionSettings, y: 0, autoAlpha: 1, display: 'block' });
             },
             onLeaveBack: () => {
-                // If we scroll back up from the footer, show the logo again
                 gsap.to(imgRef.current, { ...transitionSettings, y: 0, autoAlpha: 1, display: 'block' });
                 gsap.to(textRef.current, { ...transitionSettings, y: -30, autoAlpha: 0, display: 'none' });
             }
         });
 
-    }, { scope: containerRef }); // Removed openMenu from here to prevent re-instantiating triggers
+    }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className={`${openMenu ? 'text-foreground' : 'text-background'} font-social px-1 sm:px-4 py-2.5 sm:py-5 fixed top-0 left-0 w-full flex items-center justify-between z-50 h-fit`}>
+        /* 1. ADD pointer-events-none TO THE ROOT */
+        <div 
+            ref={containerRef} 
+            className={`${openMenu ? 'text-foreground' : 'text-background'} font-social px-1 sm:px-4 py-2.5 sm:py-5 fixed top-0 left-0 w-full flex items-center justify-between z-50 h-fit pointer-events-none`}
+        >
+            {/* 2. NavItems probably needs auto if it contains the full-screen menu */}
+            <div className={openMenu ? 'pointer-events-auto' : 'pointer-events-none'}>
+                <NavItems openMenu={openMenu} setOpenMenu={setOpenMenu} />
+            </div>
 
-            <NavItems openMenu={openMenu} setOpenMenu={setOpenMenu} />
-
-            <div className="relative h-20 w-full flex items-center">
-                {/* Logo Wrapper */}
-                <div style={{ display: 'none' }} onClick={() => setOpenMenu(false)} ref={imgRef} className="absolute cursor-pointer opacity-0">
+            {/* 3. The Logo Wrapper needs pointer-events-none so the middle space is clear */}
+            <div className="relative h-20 w-full flex items-center pointer-events-none">
+                
+                {/* 4. The actual Logo and Text get pointer-events-auto to remain clickable */}
+                <div 
+                    style={{ display: 'none' }} 
+                    onClick={() => setOpenMenu(false)} 
+                    ref={imgRef} 
+                    className="absolute cursor-pointer opacity-0 pointer-events-auto"
+                >
                     <Link href={'/'}>
                         <svg className={`w-[15vw] sm:w-[10vw] md:w-[9vw] lg:w-[5vw] ${openMenu ? 'fill-white' : 'fill-black'}`} width="106" height="97" viewBox="37 40 106 97" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="60.5" cy="113.5" r="23.5" fill="currentColor" />
@@ -86,8 +93,11 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Text Wrapper */}
-                <div onClick={() => setOpenMenu(false)} ref={textRef} className="absolute cursor-pointer">
+                <div 
+                    onClick={() => setOpenMenu(false)} 
+                    ref={textRef} 
+                    className="absolute cursor-pointer pointer-events-auto"
+                >
                     <Link className='uppercase text-2xl sm:text-4xl sm:font-semibold flex flex-col sm:leading-8 leading-6 font-bold font-futura' href={'/'}>
                         <span>no</span>
                         <span>good</span>
@@ -96,7 +106,8 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className='z-50'>
+            {/* 5. Hamburger Wrapper needs pointer-events-auto */}
+            <div className='z-50 pointer-events-auto'>
                 <div className="cursor-pointer" onClick={() => setOpenMenu(!openMenu)}>
                     <HamburgerMenu state={openMenu} />
                 </div>
