@@ -27,13 +27,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
 html {
   /* This keeps the scrollbar "track" visible so the page doesn't shift */
   scrollbar-gutter: stable;
 }
+
 ::selection {
-  background-color: #000; /* The dark gray from your image */
-  color: #fff;            /* Your 'milk' color (adjust hex if needed) */
+  background-color: #000;
+  /* The dark gray from your image */
+  color: #fff;
+  /* Your 'milk' color (adjust hex if needed) */
 }
 
 /* Firefox specific */
@@ -41,11 +45,19 @@ html {
   background-color: #000;
   color: #fff;
 }
+
 body.menu-open {
   overflow: hidden !important;
   height: 100vh;
 }
+
 .quotesSection {
   overflow: clip;
   contain: layout paint;
+}
+
+.hoverLink:hover {
+  opacity: 0.7;
+  transition: all;
+  transition-duration: 200;
 }
