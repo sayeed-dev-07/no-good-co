@@ -10,29 +10,13 @@ gsap.registerPlugin(ScrollTrigger)
 
 const ShopProductCard = ({ id }: { id: number }) => {
   const data = shopProducts[id - 1];
-  const containerRef = useRef(null)
-  const imgRef = useRef(null)
-  useGSAP(() => {
 
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'clamp(top 90%)',
-      }
-    }).from(containerRef.current, {
-      y:'40%',
-      autoAlpha:0,
-      duration:0.8,
-      delay:0.1,
-      ease:'power2.in'
-    })
-  }, { scope: containerRef })
   
   return (
     <div 
-      ref={containerRef} 
+       
       // Changed: Removed 'justify-between', kept 'flex-col' and 'h-full'
-      className="w-full h-full flex flex-col items-center text-sm font-helvic uppercase text-center pb-4"
+      className="w-full imgCard h-full flex flex-col items-center text-sm font-helvic uppercase text-center pb-4"
     >
       {/* Image Wrapper: 
          - flex-1: Takes up all available vertical space
@@ -40,7 +24,6 @@ const ShopProductCard = ({ id }: { id: number }) => {
       */}
       <div className="flex-1 w-full flex items-center justify-center p-1">
         <Image 
-          ref={imgRef}
           src={data.image}
           alt={data.name}
           width={400}
