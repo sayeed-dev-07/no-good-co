@@ -64,7 +64,7 @@ const Page = () => {
     })
     return (
         <div className='bg-foreground text-background pt-[15vh] sm:pt-[20vh] sm:px-4 px-1'>
-            <div className='min-h-[60vh] sm:min-h-[70vh] flex-col flex items-start justify-center w-full sm:gap-y-12 gap-y-3'>
+            <div className='min-h-[60vh] sm:min-h-[50vh] flex-col flex items-start justify-center w-full sm:gap-y-12 gap-y-3'>
                 <div className='relative'>
                     <div  className='md:text-nowrap  flex items-end justify-start text-[12vw] md:text-[10vw] xl:text-[calc((100vw-848px)*0.1620)] leading-[0.96em] sm:leading-[0.9em] uppercase font-medium  font-futura tracking-[-0.02em]  md:gap-x-8 gap-x-3'>
                         <TextAnimation style='' text='good things' /> <FaChevronDown />
