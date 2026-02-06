@@ -18,10 +18,11 @@ const ProductSection = () => {
             ease:'power3.out',
             scrollTrigger:{
                 trigger:'.card-container1',
-                start:'top 80%',
+                start:'top 90%',
                 
             },
-            stagger:0.4
+            stagger:0.4,
+            delay:0.2
         })
         gsap.from('.imgContainer2', {
             y: 200,
