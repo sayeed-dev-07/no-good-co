@@ -11,10 +11,10 @@ gsap.registerPlugin(ScrollTrigger)
 const ShopProductCard = ({ id }: { id: number }) => {
   const data = shopProducts[id - 1];
 
-  
+
   return (
-    <div 
-       
+    <div
+
       // Changed: Removed 'justify-between', kept 'flex-col' and 'h-full'
       className="w-full imgCard h-full flex flex-col items-center text-sm font-helvic uppercase text-center pb-4"
     >
@@ -23,11 +23,12 @@ const ShopProductCard = ({ id }: { id: number }) => {
          - flex/items-center: Centers the image within that available space
       */}
       <div className="flex-1 w-full flex items-center justify-center p-1">
-        <Image 
+        <Image
           src={data.image}
           alt={data.name}
           width={400}
           height={400}
+          loading='lazy'
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           // Removed fixed height percentages to allow flex to handle it
           className="object-contain w-[90%] sm:w-[80%]"

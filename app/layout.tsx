@@ -6,6 +6,7 @@ import Navbar from "@/components/mainPageComponents/Navbar";
 import LenisProvider from "@/components/providers/lenis";
 import ScrollSmootherWrapper from "@/components/providers/lenis";
 import FooterSection from "@/components/mainPageComponents/FooterSection";
+import CustomCursor from "@/components/cateringComponents/mouse";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

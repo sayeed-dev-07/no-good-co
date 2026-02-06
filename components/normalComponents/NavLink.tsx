@@ -4,14 +4,36 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 
 const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setOpenMenu:React.Dispatch<React.SetStateAction<boolean>> }) => {
     const svgRef = useRef<HTMLDivElement | null>(null)
+    const [isTouch, setIsTouch] = useState(false)
     const { contextSafe } = useGSAP()
 
+    useEffect(() => {
+        if (typeof window === 'undefined') return
+
+        const media = window.matchMedia('(hover: none), (pointer: coarse)')
+        const update = () => {
+            const hasTouch = media.matches || navigator.maxTouchPoints > 0
+            setIsTouch(hasTouch)
+        }
+
+        update()
+
+        if (media.addEventListener) {
+            media.addEventListener('change', update)
+            return () => media.removeEventListener('change', update)
+        }
+
+        media.addListener(update)
+        return () => media.removeListener(update)
+    }, [])
+
     const mouseIN = contextSafe(() => {
+        if (isTouch) return
         gsap.to(svgRef.current, {
             clipPath: 'polygon(0% 0%, 100% 0, 100% 100%, 0 100%)',
             duration:0.3,
@@ -19,6 +41,7 @@ const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setO
         })
     })
     const mouseOUT = contextSafe(() => {
+        if (isTouch) return
         gsap.to(svgRef.current, {
             clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)',
             duration:0.3,
@@ -31,9 +54,9 @@ const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setO
         })
     })
     return (
-        <div  onMouseEnter={mouseIN} onMouseLeave={mouseOUT} className='overflow-hidden flex flex-col items-end'>
+        <div  onMouseEnter={isTouch ? undefined : mouseIN} onMouseLeave={isTouch ? undefined : mouseOUT} className='overflow-hidden flex flex-col items-end'>
             <Link onClick={()=>setOpenMenu(false)} className='link' href={path}>{text}</Link>
-            <div onMouseEnter={mouseIN} onMouseLeave={mouseOUT} style={{clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)'}} ref={svgRef} className='flex w-[60%] mx-auto h-2.5 relative items-center  justify-center'>
+            <div onMouseEnter={isTouch ? undefined : mouseIN} onMouseLeave={isTouch ? undefined : mouseOUT} style={{clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)'}} ref={svgRef} className='flex w-[60%] mx-auto h-2.5 relative items-center  justify-center'>
                 <Image fill className='object-cover ' alt='borderImg' src={'/whiteline.svg'} />
             </div>
         </div>
