@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LineButton from '../normalComponents/LineButton';
 import TextAnimation from '../normalComponents/textAnimation';
 import LineAnim from '../normalComponents/LineAnimation';
+import Line from '../normalComponents/Line';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,15 +16,7 @@ const ShopSlider = () => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useGSAP(() => {
-        gsap.to('.line',{
-            x:0,
-            duration:0.5,
-            ease:'power1.out',
-            scrollTrigger:{
-                trigger:'.line',
-                start: 'top 80%'
-            }
-        })
+        
 
         gsap.to('.gift-card-img', {
             scale: 1,
@@ -41,13 +34,7 @@ const ShopSlider = () => {
 
     return (
         <div ref={containerRef} className='font-helvic w-full overflow-hidden'>
-            <div>
-                <div className='uppercase text-xs flex items-center justify-between'>
-                    <p>buy good</p>
-                    <p>do good</p>
-                </div>
-                <div  className='w-full line -translate-x-full h-px bg-background'></div>
-            </div>
+            <Line text1='BUY GOOD' text2='do good'/>
             <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-y-4 gap-x-4 py-[2%]'>
                 <GiftImage index={0} />
                 <GiftImage index={1} />

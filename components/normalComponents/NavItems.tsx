@@ -90,7 +90,7 @@ const NavItems = ({openMenu, setOpenMenu}:{openMenu: boolean, setOpenMenu: React
                 </div>
                 <div className='sm:flex-2 w-full items-end font-futura flex font-bold  sm:text-6xl text-4xl lg:text-7xl uppercase flex-col -gap-y-2 mt-[30%] sm:mt-[5%]'>
                     <NavLink setOpenMenu={setOpenMenu} path='/shop' text='shop'/>
-                    <NavLink setOpenMenu={setOpenMenu} path='/catering' text='catering'/>
+                    <NavLink setOpenMenu={setOpenMenu} path='/anime' text='anime'/>
                     <NavLink setOpenMenu={setOpenMenu} path='/impact' text='impact'/>
                     <NavLink setOpenMenu={setOpenMenu} path='/stories' text='stories'/>
                     <NavLink setOpenMenu={setOpenMenu} path='/about' text='about'/>

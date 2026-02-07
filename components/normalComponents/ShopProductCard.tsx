@@ -28,7 +28,7 @@ const ShopProductCard = ({ id }: { id: number }) => {
           alt={data.name}
           width={400}
           height={400}
-          loading='lazy'
+          loading='eager'
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           // Removed fixed height percentages to allow flex to handle it
           className="object-contain w-[90%] sm:w-[80%]"

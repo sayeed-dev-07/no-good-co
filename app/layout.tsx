@@ -6,7 +6,7 @@ import Navbar from "@/components/mainPageComponents/Navbar";
 import LenisProvider from "@/components/providers/lenis";
 import ScrollSmootherWrapper from "@/components/providers/lenis";
 import FooterSection from "@/components/mainPageComponents/FooterSection";
-import CustomCursor from "@/components/cateringComponents/mouse";
+import CustomCursor from "@/components/animeComponents/mouse";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,10 +46,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${futura.variable} ${helvic.variable} ${geistMono.variable} ${social.variable} text-background antialiased bg-foreground`}
       >
-        <Navbar/>
+        <Navbar />
         <ScrollSmootherWrapper>
           {children}
-          <FooterSection/>
+          <FooterSection />
         </ScrollSmootherWrapper>
       </body>
     </html>

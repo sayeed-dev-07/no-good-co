@@ -19,6 +19,7 @@ const CustomCursor = ({ disabled = false }: CustomCursorProps) => {
   const mouse = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
 
@@ -106,7 +107,7 @@ const CustomCursor = ({ disabled = false }: CustomCursorProps) => {
   return createPortal(
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 z-[9999] w-5 h-5 bg-black rounded-full pointer-events-none flex items-center justify-center"
+      className="fixed top-0 left-0 z-9999 w-5 h-5 bg-black rounded-full pointer-events-none flex items-center justify-center"
     >
       <span
         ref={textRef}
