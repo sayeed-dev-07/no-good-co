@@ -37,9 +37,10 @@ const AnimeNormalImg = ({ link, delayTime=0, big=false }: { link: string, delayT
                 src={link} 
                 alt='Anime Image' 
                 fill 
+                loading='lazy'
                 data-speed="0.8"
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className='object-cover h-[120%] w-full top-[-10%] object-top absolute scale-110 opacity-0'
+                className='object-cover h-[120%] w-full top-[-10%] object-center absolute scale-110 opacity-0'
             />
         </div>
         

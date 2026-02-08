@@ -3,6 +3,8 @@ import { animeData } from '@/public/data/animeData';
 import ImpactImg from '../normalComponents/ImpactImg';
 import LineAnim from '../normalComponents/LineAnimation';
 import AnimeNormalImg from './AnimeNormalImg';
+import LineButton from '../normalComponents/LineButton';
+import { LuMoveUpRight } from 'react-icons/lu';
 const AnimeDetailsCard = ({ index }: { index: number }) => {
     const data = animeData[index]
 
@@ -29,6 +31,13 @@ const AnimeDetailsCard = ({ index }: { index: number }) => {
                                 <LineAnim style='' text={data.description} />
 
                             </div>
+                            <div>
+                                <LineButton auto={false}>
+                                    <div className='flex items-center justify-between gap-x-2 text-xs'>
+                                        <a target='_blank' href={data.link} className='font-social uppercase '>{data.name}</a> <LuMoveUpRight />
+                                    </div>
+                                </LineButton>
+                            </div>
                         </div>
                     </div>
 
@@ -52,6 +61,13 @@ const AnimeDetailsCard = ({ index }: { index: number }) => {
                         <div className='font-helvic text-normal flex gap-y-2 flex-col  sm:gap-y-6'>
                             <LineAnim style='' text={data.description} />
 
+                        </div>
+                        <div>
+                            <LineButton auto={false}>
+                                <div className='flex items-center justify-between gap-x-2 text-xs'>
+                                    <a target='_blank' href={data.link} className='font-social uppercase '>{data.name}</a> <LuMoveUpRight />
+                                </div>
+                            </LineButton>
                         </div>
                     </div>
                 </div>

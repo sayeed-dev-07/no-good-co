@@ -1,6 +1,8 @@
 'use client';
 
+import AnimeDataSlider from '@/components/animeComponents/AnimeDataSlider';
 import AnimeDetaileSection from '@/components/animeComponents/AnimeDetaileSection';
+import ExtraAnimes from '@/components/animeComponents/ExtraAnimes';
 import HeadlineTextAnime from '@/components/animeComponents/headLinePart';
 import CustomCursor from '@/components/animeComponents/mouse';
 import VideoHero from '@/components/animeComponents/VideoHero';
@@ -81,7 +83,8 @@ const Page = () => {
 
                 <HeadlineTextAnime/>
                 <AnimeDetaileSection/>
-
+                <AnimeDataSlider/>
+                <ExtraAnimes/>
             </div>
         </div>
 
