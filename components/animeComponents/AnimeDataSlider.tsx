@@ -242,7 +242,7 @@ const AnimeDataSlider = () => {
                                     {formatViews(item.views)}
                                 </span>
 
-                                <h3 className="anime-slider-item text-right uppercase font-futura tracking-tight ">
+                                <h3 className="anime-slider-item text-right uppercase text-[2.8vw] md:text-[3vw] font-futura tracking-tight ">
                                     {item.name}
                                 </h3>
                             </div>
