@@ -1,12 +1,11 @@
 import React from 'react';
 import EmailSection from '../normalComponents/EmailSection';
-import FooterBottom from '../normalComponents/FooterBottom';
 import FooterSvg from '../normalComponents/FooterBottom';
 import LineAnim from '../normalComponents/LineAnimation';
 
 const FooterSection = () => {
     return (
-        <div className='py-[5%]  sm:px-4 px-1 bg-foreground text-background'>
+        <div className='py-[5%] -mt-2 sm:px-4 px-1 bg-foreground text-background'>
             <div className='py-[5%] sm:py-0'>
                 <EmailSection />
             </div>

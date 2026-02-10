@@ -12,41 +12,42 @@ const ScrollContainer = () => {
     const containerRef = useRef(null);
 
     useGSAP(() => {
-        
+
         const cards = gsap.utils.toArray('.card', containerRef.current);
 
-        
+
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: `+=${cards.length * 100}%`, 
+                end: `+=${cards.length * 100}%`,
                 pin: true,
-                scrub: 1, 
+                scrub: 1,
             }
         });
 
         // 3. Animate cards stacking
         cards.forEach((card, i) => {
-            if (i > 0) { 
+            if (i > 0) {
                 tl.from(card as gsap.TweenTarget, {
-                    yPercent: 100, 
+                    yPercent: 100,
                     ease: "none",
                     duration: 1,
                     force3D: true
-                }); 
+                });
+                
             }
         });
 
-    }, { scope: containerRef }); 
+    }, { scope: containerRef });
 
     return (
-        
-        <div ref={containerRef} className='h-screen w-full relative overflow-hidden bg-black'>
+
+        <div ref={containerRef} className='h-screen w-full relative overflow-hidden bg-[#6d916e]'>
             {
-               storyData.map((item)=>{
-                return <AnimeCard key={item.id} char={item}/>
-               }) 
+                storyData.map((item) => {
+                    return <AnimeCard key={item.id} char={item} />
+                })
             }
         </div>
     );

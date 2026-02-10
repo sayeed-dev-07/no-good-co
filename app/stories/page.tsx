@@ -2,7 +2,7 @@
 import TextAnimation from '@/components/normalComponents/textAnimation';
 import ScrollContainer from '@/components/storiesComponents/ScrollContainer';
 import TextLineAnim from '@/components/storiesComponents/TextLineAnim';
-import Link from 'next/link';
+
 import React from 'react';
 
 
@@ -26,12 +26,12 @@ const Page = () => {
             </div>
             {/* stories */}
             <div>
-                <div className="w-full h-[10vh] overflow-hidden">
+                <div className="w-full h-[10vh]">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 1440 220"
                         preserveAspectRatio="none"
-                        className="w-full h-full"
+                        className="w-full h-[calc(100%+1px)] block"
                     >
                         <ellipse
                             cx="720"
@@ -42,7 +42,9 @@ const Page = () => {
                         />
                     </svg>
                 </div>
-                <ScrollContainer/>
+                
+                    <ScrollContainer/>
+
 
             </div>
 
