@@ -29,7 +29,7 @@ export const storyData = [
       'Humanity’s strongest soldier moves like a blade in the wind. Levi fights not for glory, but to ensure sacrifices are never meaningless.',
     info:
       'Elite soldier from Attack on Titan. Known for unmatched combat skill, speed, and ruthless efficiency against Titans.',
-    img: 'https://i.pinimg.com/736x/d4/b3/eb/d4b3ebe5bfebe3691c4a5d2f240d0484.jpg',
+    img: 'https://i.pinimg.com/1200x/cc/fa/16/ccfa164e6a42d0699105f9a5a156fda2.jpg',
     link: 'https://attackontitan.fandom.com/wiki/Levi_Ackerman',
   },
   {

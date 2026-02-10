@@ -18,7 +18,7 @@ const AnimeCard = ({ char }: { char: AnimeCharProps }) => {
             style={{ backgroundColor: char.bgColor, zIndex: Number(char.id) }}
             className='h-screen w-full absolute top-0 left-0 flex items-center justify-center will-change-transform overflow-hidden card'
         >
-            <div className='relative w-full h-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center p-6 md:p-12 gap-8 md:gap-16'>
+            <div className='relative w-full h-full max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-center p-6 md:p-12 gap-8 md:gap-16'>
 
                 
                 <div className='relative w-full h-[40vh] md:w-1/2 md:h-[80vh] flex items-center justify-center'>
@@ -27,7 +27,7 @@ const AnimeCard = ({ char }: { char: AnimeCharProps }) => {
                             src={char.img} 
                             alt={char.name} 
                             fill 
-                            className='object-cover' 
+                            className='object-cover  object-top' 
                             priority={Number(char.id) === 1}
                             sizes='(max-width: 768px) 100vw, 50vw'
                         />
@@ -35,7 +35,7 @@ const AnimeCard = ({ char }: { char: AnimeCharProps }) => {
                 </div>
 
                
-                <div className='flex flex-col items-start justify-center w-full md:w-1/2 text-background z-10 space-y-4 md:space-y-6'>
+                <div className='flex md:pt-8 pt-0 flex-col items-start justify-center w-full md:w-1/2 text-background z-10 space-y-4 md:space-y-6'>
                     
                     
                     <span className='uppercase tracking-tighter text-xs sm:text-sm  font-bold opacity-80 bg-background/40 px-2 font-social py-1.5 '>
