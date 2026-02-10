@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ScrollContainer = () => {
     const containerRef = useRef(null);
     const [isTouch, setIsTouch] = useState(false)
+    
     useEffect(() => {
             if (typeof window === 'undefined') return
     
@@ -34,7 +35,7 @@ const ScrollContainer = () => {
     useGSAP(() => {
 
         const cards = gsap.utils.toArray('.card', containerRef.current);
-        
+
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,

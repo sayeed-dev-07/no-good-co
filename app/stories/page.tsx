@@ -1,10 +1,19 @@
+'use client'
 import TextAnimation from '@/components/normalComponents/textAnimation';
 import ScrollContainer from '@/components/storiesComponents/ScrollContainer';
 import TextLineAnim from '@/components/storiesComponents/TextLineAnim';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect } from 'react';
 
-
+gsap.registerPlugin(ScrollTrigger)
 
 const Page = () => {
+    useEffect(() => {
+        requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+        })
+    }, []);
 
     return (
         <div className='min-h-screen bg-foreground text-background font-helvic'>
