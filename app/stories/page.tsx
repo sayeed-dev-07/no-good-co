@@ -1,12 +1,11 @@
-
 import TextAnimation from '@/components/normalComponents/textAnimation';
 import ScrollContainer from '@/components/storiesComponents/ScrollContainer';
 import TextLineAnim from '@/components/storiesComponents/TextLineAnim';
 
-import React from 'react';
 
 
 const Page = () => {
+
     return (
         <div className='min-h-screen bg-foreground text-background font-helvic'>
 
@@ -42,8 +41,8 @@ const Page = () => {
                         />
                     </svg>
                 </div>
-                
-                    <ScrollContainer/>
+
+                <ScrollContainer />
 
 
             </div>

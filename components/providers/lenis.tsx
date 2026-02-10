@@ -7,21 +7,29 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 
+
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 
-export default function ScrollSmootherWrapper({ children }:{children : React.ReactNode}) {
+export default function ScrollSmootherWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  
 
   useGSAP(() => {
     // Initialize Smoother
-    ScrollSmoother.create({
+    const smoother = ScrollSmoother.create({
       wrapper: '#smooth-wrapper',
       content: '#smooth-content',
       smooth: 1.15,
       effects: true,
+      smoothTouch: false,
+      normalizeScroll: {
+        debounce: true,
+        momentum: 1.15,
+      }
     });
-  }, { dependencies: [pathname], revertOnUpdate: true }); 
+    return () => smoother.kill();
+  }, { dependencies: [pathname], revertOnUpdate: true });
 
   return (
     <div id="smooth-wrapper">

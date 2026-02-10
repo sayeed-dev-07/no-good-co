@@ -2,7 +2,7 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AnimeCard from './AnimeCard';
 import { storyData } from '@/public/data/StoriesData';
 
@@ -10,19 +10,38 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ScrollContainer = () => {
     const containerRef = useRef(null);
+    const [isTouch, setIsTouch] = useState(false)
+    useEffect(() => {
+            if (typeof window === 'undefined') return
+    
+            const media = window.matchMedia('(hover: none), (pointer: coarse)')
+            const update = () => {
+                const hasTouch = media.matches || navigator.maxTouchPoints > 0
+                setIsTouch(hasTouch)
+            }
+    
+            update()
+    
+            if (media.addEventListener) {
+                media.addEventListener('change', update)
+                return () => media.removeEventListener('change', update)
+            }
+    
+            media.addListener(update)
+            return () => media.removeListener(update)
+        }, [])
 
     useGSAP(() => {
 
         const cards = gsap.utils.toArray('.card', containerRef.current);
-
-
+        
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
                 end: `+=${cards.length * 100}%`,
                 pin: true,
-                scrub: 1,
+                scrub: isTouch ? 0 : 1,
             }
         });
 
