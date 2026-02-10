@@ -18,9 +18,8 @@ const AnimeCard = ({ char }: { char: AnimeCharProps }) => {
             style={{ backgroundColor: char.bgColor, zIndex: Number(char.id) }}
             className='h-screen w-full absolute top-0 left-0 flex items-center justify-center will-change-transform overflow-hidden card'
         >
-            <div className='relative w-full h-full max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-center p-6 md:p-12 gap-8 md:gap-16'>
+            <div className='relative  w-full h-full max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-center p-2 md:p-12 gap-6 md:gap-16'>
 
-                
                 <div className='relative w-full h-[40vh] md:w-1/2 md:h-[80vh] flex items-center justify-center'>
                     <div className='relative w-full h-full rounded-md overflow-hidden shadow-2xl z-10 border-4 border-white/20'>
                         <Image 
