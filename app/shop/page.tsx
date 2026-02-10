@@ -5,10 +5,9 @@ import TextAnimation from '@/components/normalComponents/textAnimation';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import Image from 'next/image';
 import React, { useRef } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
-import { text } from 'stream/consumers';
+
 
 gsap.registerPlugin(SplitText)
 
@@ -16,9 +15,9 @@ const Page = () => {
 
     const textRef = useRef(null)
     const containerRef = useRef(null)
-    const svgRef = useRef(null)
 
-    const {contextSafe} = useGSAP(() => {
+
+    useGSAP(() => {
         document.fonts.ready.then(() => {
             const split = new SplitText(textRef.current, {
                 type: 'lines, words',
@@ -41,27 +40,6 @@ const Page = () => {
     })
 
 
-    const mouseIN = contextSafe(() => {
-        gsap.to(svgRef.current, {
-            clipPath: 'polygon(0% 0%, 100% 0, 100% 100%, 0 100%)',
-            duration:0.6,
-            ease:'power2.out',
-            overwrite:'auto'
-        })
-    })
-    const mouseOUT = contextSafe(() => {
-        gsap.to(svgRef.current, {
-            clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)',
-            duration:0.6,
-            ease:'power2.out',
-            overwrite:'auto',
-            onComplete: ()=>{
-                gsap.set(svgRef.current, {
-                    clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)'
-                })
-            }
-        })
-    })
     return (
         <div className='bg-foreground text-background pt-[15vh] sm:pt-[20vh] sm:px-4 px-1'>
             <div className='min-h-[60vh] sm:min-h-[50vh] flex-col flex items-start justify-center w-full sm:gap-y-12 gap-y-3'>

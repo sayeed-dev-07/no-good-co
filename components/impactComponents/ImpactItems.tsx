@@ -46,8 +46,8 @@ const ImpactItems = ({ name, index }: NameProp) => {
 
     return (
         <div className='w-full'>
-            <div className='w-full h-1 bg-background'/>
-            <div onClick={handleClick} className='w-full cursor-pointer lg:text-6xl md:text-5xl sm:text-4xl text-3xl md:py-12 sm:py-8 py-6 uppercase gap-x-2 font-futura flex items-center justify-between'>
+            <div className='w-full h-0.5 sm:h-1 bg-background'/>
+            <div onClick={handleClick} className='w-full cursor-pointer lg:text-5xl md:text-4xl sm:text-3xl text-xl md:py-12 sm:py-8 py-6 uppercase gap-x-2 font-futura flex items-center justify-between'>
                 <p className='flex-1'>0{index}</p>
                 <p className='md:flex-3 flex-4 text-start text-wrap'>{wrapName(name)}</p>
                 <div ref={arrowRef}>
