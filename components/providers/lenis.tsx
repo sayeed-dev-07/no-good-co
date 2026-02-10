@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect } from 'react';
 
 
 
@@ -13,7 +14,12 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 export default function ScrollSmootherWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  
+  useEffect(() => {
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+}, []);
+
 
   useGSAP(() => {
     // Initialize Smoother

@@ -4,14 +4,26 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 import React, { useEffect, useRef, useState } from 'react';
 
 
-const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setOpenMenu:React.Dispatch<React.SetStateAction<boolean>> }) => {
+const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setOpenMenu: React.Dispatch<React.SetStateAction<boolean>> }) => {
     const svgRef = useRef<HTMLDivElement | null>(null)
     const [isTouch, setIsTouch] = useState(false)
-    const { contextSafe } = useGSAP()
+    const { contextSafe } = useGSAP(
+        () => {
+            if (!svgRef.current) return;
 
+            gsap.set(svgRef.current, {
+                clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
+                willChange: 'clip-path',
+            });
+        }
+    )
+    const router = useRouter
+        ();
     useEffect(() => {
         if (typeof window === 'undefined') return
 
@@ -31,22 +43,30 @@ const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setO
         media.addListener(update)
         return () => media.removeListener(update)
     }, [])
+    const handleClick = () => {
+        setOpenMenu(false);
 
+        requestAnimationFrame(() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        });
+
+        router.push(path);
+    };
     const mouseIN = contextSafe(() => {
         if (isTouch) return
         gsap.to(svgRef.current, {
             clipPath: 'polygon(0% 0%, 100% 0, 100% 100%, 0 100%)',
-            duration:0.3,
-            ease:'power2.out',
+            duration: 0.3,
+            ease: 'power2.out',
         })
     })
     const mouseOUT = contextSafe(() => {
         if (isTouch) return
         gsap.to(svgRef.current, {
             clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)',
-            duration:0.3,
-            ease:'power2.out',
-            onComplete: ()=>{
+            duration: 0.3,
+            ease: 'power2.out',
+            onComplete: () => {
                 gsap.set(svgRef.current, {
                     clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)'
                 })
@@ -54,9 +74,9 @@ const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setO
         })
     })
     return (
-        <div  onMouseEnter={isTouch ? undefined : mouseIN} onMouseLeave={isTouch ? undefined : mouseOUT} className='overflow-hidden flex flex-col items-end'>
-            <Link onClick={()=>setOpenMenu(false)} className='link' href={path}>{text}</Link>
-            <div onMouseEnter={isTouch ? undefined : mouseIN} onMouseLeave={isTouch ? undefined : mouseOUT} style={{clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)'}} ref={svgRef} className='flex w-[60%] mx-auto h-2.5 relative items-center  justify-center'>
+        <div onMouseEnter={isTouch ? undefined : mouseIN} onMouseLeave={isTouch ? undefined : mouseOUT} className='overflow-hidden flex flex-col items-end'>
+            <Link onClick={handleClick} className='link' href={path}>{text}</Link>
+            <div onMouseEnter={isTouch ? undefined : mouseIN} onMouseLeave={isTouch ? undefined : mouseOUT} ref={svgRef} className='flex w-[60%] mx-auto h-2.5 relative items-center  justify-center'>
                 <Image fill className='object-cover ' alt='borderImg' src={'/whiteline.svg'} />
             </div>
         </div>
