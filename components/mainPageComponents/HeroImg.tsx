@@ -26,7 +26,7 @@ const HeroImg = () => {
     }, { scope: containerRef })
 
     return (
-        <div ref={containerRef} className='aspect-video overflow-hidden w-full relative'>
+        <div data-flip-id="hero-img" ref={containerRef} className='aspect-video overflow-hidden w-full relative'>
             <Image
                 ref={imgRef}
                 src={'/images/heroImg.jpg'}

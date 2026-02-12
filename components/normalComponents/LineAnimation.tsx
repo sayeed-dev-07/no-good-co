@@ -7,7 +7,7 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-const LineAnim = ({ text, style, delay=0, per='90%' }: { text: string, style?: string, delay?: number, per?:string }) => {
+const LineAnim = ({ text, style, delay=0, per='95%' }: { text: string, style?: string, delay?: number, per?:string }) => {
     const textRef = useRef<HTMLDivElement | null>(null)
 
     useGSAP(() => {

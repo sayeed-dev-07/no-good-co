@@ -2,7 +2,9 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import React, { useRef } from 'react';
+import React, {  useContext, useRef } from 'react';
+import { IntroContext } from '../providers/IntroContext';
+
 
 type prop = {
     style: string,
@@ -15,9 +17,9 @@ gsap.registerPlugin(SplitText);
 
 const TextAnimation = ({ style, text }: prop) => {
     const textRef = useRef<HTMLParagraphElement | null>(null);
-
+    const introFinished = useContext(IntroContext)
     useGSAP(() => {
-        if (!textRef.current) return;
+        if (!textRef.current || !introFinished) return;
 
         // 1. Split the text
         document.fonts.ready.then(() => {
@@ -27,15 +29,14 @@ const TextAnimation = ({ style, text }: prop) => {
                 mask: 'lines'
             });
             gsap.set(textRef.current, { visibility: 'visible' });
-
-            // 3. The Animation
-            gsap.from(split.words, {
+            const tl = gsap.timeline()
+            
+            tl.from(split.words, {
                 y: '110%',
                 duration: 1.2,
-                stagger: 0.2,             // Faster stagger usually feels more "premium"
-                ease: 'expo.out',          // Expo is the king of smooth transitions
-                delay: 0.2,
-            });
+                stagger: 0.2,             
+                ease: 'expo.out',         
+            }) 
 
             return () => {
                 split.revert()
@@ -45,10 +46,10 @@ const TextAnimation = ({ style, text }: prop) => {
 
 
 
-    }, { scope: textRef });
+    }, { scope: textRef , dependencies: [introFinished] });
 
     return (
-        /* Add "invisible" class or inline style to hide it initially */
+        
         <p
             ref={textRef}
             className={`${style} will-change-transform`}
