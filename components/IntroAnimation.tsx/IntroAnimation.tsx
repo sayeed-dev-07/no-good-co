@@ -13,23 +13,26 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
         images?.forEach((img, index) => {
             gsap.set(img, {
                 x: index % 2 === 0 ? 180 : -180,
+                y: gsap.utils.random([200, -200]),
                 opacity: 0
             })
         })
         const rotation = (index: number) => {
             if (index + 1 === images?.length) {
                 return 0
-            }else if(index % 2 === 0){
+            } else if (index % 2 === 0) {
                 return 10
-            }else{
+            } else {
                 return -10
             }
         }
+        tl.to({}, { duration: 0.3 })
         images?.forEach((img, index) => {
             tl.to(img, {
                 x: 0,
                 opacity: 1,
-                stagger:0.3,
+                y: 0,
+                stagger: 0.3,
                 rotate: rotation(index),
                 ease: 'none',
 
