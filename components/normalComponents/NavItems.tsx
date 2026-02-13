@@ -23,9 +23,7 @@ const NavItems = ({openMenu, setOpenMenu}:{openMenu: boolean, setOpenMenu: React
         const tl = gsap.timeline()
          gsap.set(containerRef.current, { force3D: true })
         if (openMenu) {
-            if (scrollRef.current) {
-                scrollRef.current.scrollTop = 0;
-            }
+            
             tl.to(containerRef.current, {
                 y:0,
                 duration:0.5,
@@ -93,9 +91,9 @@ const NavItems = ({openMenu, setOpenMenu}:{openMenu: boolean, setOpenMenu: React
                     <NavLink setOpenMenu={setOpenMenu} path='/anime' text='anime'/>
                     <NavLink setOpenMenu={setOpenMenu} path='/impact' text='impact'/>
                     <NavLink setOpenMenu={setOpenMenu} path='/stories' text='stories'/>
-                    <NavLink setOpenMenu={setOpenMenu} path='/about' text='about'/>
+                    <NavLink setOpenMenu={setOpenMenu} path='/cat' text='cat'/>
                     <NavLink setOpenMenu={setOpenMenu} path='/contact' text='contact'/>
-                    <NavLink setOpenMenu={setOpenMenu} path='/donate' text='donate'/>
+                    
                 </div>
             </div>
         </div>

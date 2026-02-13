@@ -4,7 +4,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+
 
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -22,8 +22,7 @@ const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setO
             });
         }
     )
-    const router = useRouter
-        ();
+
     useEffect(() => {
         if (typeof window === 'undefined') return
 
@@ -45,12 +44,6 @@ const NavLink = ({ path, text, setOpenMenu }: { path: string, text: string, setO
     }, [])
     const handleClick = () => {
         setOpenMenu(false);
-
-        requestAnimationFrame(() => {
-            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-        });
-
-        router.push(path);
     };
     const mouseIN = contextSafe(() => {
         if (isTouch) return
