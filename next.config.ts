@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "media2.giphy.com",
+      },
+      {
+        protocol: "https",
         hostname: "cdn.sanity.io",
       },
       {
