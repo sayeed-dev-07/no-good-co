@@ -29,7 +29,7 @@ const LineAnim = ({ text, style, delay=0, per='95%' }: { text: string, style?: s
         {
             scrollTrigger: {
                 trigger: textRef.current,
-                start: `clamp(top ${per})`,
+                start: `clamp(top 95%)`,
             },
             ease: 'power4.out',
             yPercent: 0,
