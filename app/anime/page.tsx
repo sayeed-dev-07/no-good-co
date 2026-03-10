@@ -7,12 +7,10 @@ import HeadlineTextAnime from '@/components/animeComponents/headLinePart';
 import CustomCursor from '@/components/animeComponents/mouse';
 import VideoHero from '@/components/animeComponents/VideoHero';
 import Line from '@/components/normalComponents/Line';
+import { createSplitTextReveal } from '@/lib/createSplitTextReveal';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { SplitText } from 'gsap/SplitText';
 import React, { useRef, useState } from 'react';
-
-gsap.registerPlugin(SplitText)
 
 const Page = () => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -23,30 +21,38 @@ const Page = () => {
     useGSAP(() => {
         if (!textRef.current) return;
 
-        // 1. Split the text
+        let cleanup: (() => void) | undefined;
+        let isCancelled = false;
+
         document.fonts.ready.then(() => {
-
-            const split = new SplitText(textRef.current, {
-                type: 'lines, words',
-                mask: 'lines',
-                autoSplit: true
-            });
-            gsap.set(textRef.current, { visibility: 'visible' });
-
-            // 3. The Animation
-            gsap.from(split.words, {
-                y: '110%',
-                duration: 1.2,
-                stagger: 0.2,
-                ease: 'expo.out',
-                delay: 0.2,
-            });
-
-            return () => {
-                split.revert()
+            if (isCancelled || !textRef.current) {
+                return;
             }
-        })
 
+            cleanup = createSplitTextReveal({
+                element: textRef.current,
+                splitType: 'lines, words',
+                target: 'words',
+                splitOptions: {
+                    autoSplit: true,
+                },
+                fromVars: {
+                    y: '110%',
+                },
+                toVars: {
+                    y: '0%',
+                    duration: 1.2,
+                    stagger: 0.2,
+                    ease: 'expo.out',
+                    delay: 0.2,
+                },
+            });
+        });
+
+        return () => {
+            isCancelled = true;
+            cleanup?.();
+        };
     }, { scope: cateringContainer })
     useGSAP(() => {
         if (!videoRef.current) {
@@ -70,7 +76,7 @@ const Page = () => {
 
             <div className='overflow-hidden w-full'>
                 <CustomCursor disabled={isPlaying} />
-                <div ref={textRef} className="text-[12vw]  tracking-tight font-futura flex w-full">
+                <div ref={textRef} style={{ visibility: 'hidden' }} className="text-[12vw] tracking-tight font-futura flex w-full">
                     GOOD ANIME.
                 </div>
 

@@ -29,7 +29,7 @@ const ImpactSection = () => {
                     <ImpactImg index={0}/>
                 </div>
                 <div className='flex-1 relative'>
-                    <ImpactImg delayTime={1} index={1}/>
+                    <ImpactImg delayTime={0.4} index={1}/>
                 </div>
             </div>
         </div>

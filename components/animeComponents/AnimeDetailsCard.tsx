@@ -1,6 +1,5 @@
 import React from 'react';
 import { animeData } from '@/public/data/animeData';
-import ImpactImg from '../normalComponents/ImpactImg';
 import LineAnim from '../normalComponents/LineAnimation';
 import AnimeNormalImg from './AnimeNormalImg';
 import LineButton from '../normalComponents/LineButton';
@@ -20,7 +19,7 @@ const AnimeDetailsCard = ({ index }: { index: number }) => {
                             <AnimeNormalImg link={data.img1} />
                         </div>
                         <div className='flex-1 relative'>
-                            <AnimeNormalImg delayTime={1} link={data.img2} />
+                            <AnimeNormalImg delayTime={0.4} link={data.img2} />
                         </div>
                     </div>
 
@@ -78,7 +77,7 @@ const AnimeDetailsCard = ({ index }: { index: number }) => {
                         <AnimeNormalImg link={data.img1} />
                     </div>
                     <div className='flex-1 relative'>
-                        <AnimeNormalImg delayTime={1} link={data.img2} />
+                        <AnimeNormalImg delayTime={0.4} link={data.img2} />
                     </div>
                 </div>
             </div>

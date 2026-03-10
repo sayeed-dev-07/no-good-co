@@ -32,9 +32,10 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
                 x: 0,
                 opacity: 1,
                 y: 0,
-                stagger: 0.3,
+                stagger: 0.1,
+                duration:0.3,
                 rotate: rotation(index),
-                ease: 'none',
+                ease: 'power2.out',
 
             })
         })

@@ -1,50 +1,49 @@
 'use client'
 import React, { useRef } from 'react';
-import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from 'gsap/SplitText';
-
-gsap.registerPlugin(SplitText, ScrollTrigger)
+import { createSplitTextReveal } from '@/lib/createSplitTextReveal';
 
 const LineAnim = ({ text, style, delay=0, per='95%' }: { text: string, style?: string, delay?: number, per?:string }) => {
     const textRef = useRef<HTMLDivElement | null>(null)
 
     useGSAP(() => {
         if (!textRef.current) return
-        
-        document.fonts.ready.then(()=>{
-            const split = SplitText.create(textRef.current, {
-            type: 'lines',
-            mask: 'lines',
-        })
-        gsap.set(split.lines, {
-            force3D: true,
-            willChange: 'transform, opacity',
-            autoAlpha:0,
-            yPercent:100,
-        });
-        gsap.set(textRef.current, { visibility: "visible" });
-        gsap.to(split.lines,
-        {
-            scrollTrigger: {
-                trigger: textRef.current,
+
+        let cleanup: (() => void) | undefined;
+        let isCancelled = false;
+
+        document.fonts.ready.then(() => {
+            if (isCancelled || !textRef.current) {
+                return;
+            }
+
+            cleanup = createSplitTextReveal({
+                element: textRef.current,
+                splitType: 'lines',
+                target: 'lines',
                 start: `clamp(top ${per})`,
-            },
-            ease: 'power4.out',
-            yPercent: 0,
-            autoAlpha: 1,
-            duration: 1,
-            stagger: 0.05,
-            delay: delay
-        }
-         )
+                immediateThreshold: per === 'bottom' ? 1 : Number.parseFloat(per) / 100 || 0.95,
+                fromVars: {
+                    force3D: true,
+                    willChange: 'transform, opacity',
+                    autoAlpha: 0,
+                    yPercent: 100,
+                },
+                toVars: {
+                    ease: 'power4.out',
+                    yPercent: 0,
+                    autoAlpha: 1,
+                    duration: 1,
+                    stagger: 0.05,
+                    delay,
+                },
+            });
+        });
 
         return () => {
-            split.revert();
+            isCancelled = true;
+            cleanup?.();
         };
-        })
-        
     })
 
 
