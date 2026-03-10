@@ -100,7 +100,7 @@ const Page = () => {
     return (
         <div
             ref={pageRef}
-            className='relative min-h-screen  bg-foreground text-background px-2 sm:px-4 pt-[17vh] sm:pt-[22vh] pb-8 sm:pb-12'
+            className='relative min-h-screen w-full overflow-hidden  bg-foreground text-background px-2 sm:px-4 pt-[17vh] sm:pt-[22vh] pb-8 sm:pb-12'
         >
             <div className='contact-glow contact-glow-one pointer-events-none absolute -top-32 -left-20 h-96 w-96 rounded-full bg-background/20 blur-3xl' />
             <div className='contact-glow contact-glow-two pointer-events-none absolute -bottom-28 right-0 h-80 w-80 rounded-full bg-background/20 blur-3xl' />
